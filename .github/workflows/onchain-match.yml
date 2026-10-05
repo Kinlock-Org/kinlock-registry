@@ -1,0 +1,14 @@
+# DRAFT (ask-first: CI). Scheduled check that on-chain meta_hash matches each payee file. Row: M1-25.
+name: onchain-match
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "On-chain match not implemented yet (M1-25)."

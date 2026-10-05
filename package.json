@@ -1,0 +1,10 @@
+{
+  "name": "kinlock-registry",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "echo 'not implemented yet (M1-24)' && exit 1",
+    "hash": "echo 'not implemented yet (M1-24)' && exit 1",
+    "check-onchain": "echo 'not implemented yet (M1-25)' && exit 1"
+  }
+}

@@ -1,0 +1,6 @@
+# Illustrative: teams are created in roadmap F-12. Replace handles as needed.
+*                         @Kinlock-Org/maintainers
+/payees/**                 @Kinlock-Org/attesters
+/attesters/**              @Kinlock-Org/maintainers
+/supported-countries.json  @Kinlock-Org/maintainers
+/schemas/**                @Kinlock-Org/maintainers

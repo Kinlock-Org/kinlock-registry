@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kinlock.org/schemas/supported-countries.schema.json",
+  "title": "Supported countries",
+  "description": "Countries where Kinlock lists payees. Changes need a human and counsel's sign-off (DEC-20, M0-17).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["countries"],
+  "properties": {
+    "countries": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[A-Z]{2}$", "description": "ISO 3166-1 alpha-2" }
+    }
+  }
+}
