@@ -7,9 +7,17 @@
   "additionalProperties": false,
   "required": ["handle", "display_name", "address", "countries"],
   "properties": {
-    "handle": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "Must match the file name" },
+    "handle": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Must match the file name"
+    },
     "display_name": { "type": "string", "minLength": 1, "maxLength": 120 },
-    "address": { "type": "string", "pattern": "^[GC][A-Z2-7]{55}$", "description": "Stellar address registered on-chain as an attester" },
+    "address": {
+      "type": "string",
+      "pattern": "^[GC][A-Z2-7]{55}$",
+      "description": "Stellar address registered on-chain as an attester"
+    },
     "countries": {
       "type": "array",
       "minItems": 1,

@@ -5,16 +5,48 @@
   "description": "Public profile of a verified payee. File: payees/<country lowercase>/<slug>.json. Public fields only: no personal data, identity documents, phone numbers, or evidence.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["slug", "display_name", "category", "country", "local_currency", "city", "payout_address", "attester", "verified_at"],
+  "required": [
+    "slug",
+    "display_name",
+    "category",
+    "country",
+    "local_currency",
+    "city",
+    "payout_address",
+    "attester",
+    "verified_at"
+  ],
   "properties": {
-    "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "maxLength": 80, "description": "ASCII, globally unique; payee_id = sha256(slug). Recommended prefix: country code" },
-    "display_name": { "type": "string", "minLength": 1, "maxLength": 160, "description": "UTF-8; any script" },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 80,
+      "description": "ASCII, globally unique; payee_id = sha256(slug). Recommended prefix: country code"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "UTF-8; any script"
+    },
     "category": { "enum": ["School", "Rent"] },
-    "country": { "type": "string", "pattern": "^[A-Z]{2}$", "description": "ISO 3166-1 alpha-2; must be in supported-countries.json and match the directory" },
-    "local_currency": { "type": "string", "pattern": "^[A-Z]{3}$", "description": "ISO 4217; display only" },
+    "country": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2; must be in supported-countries.json and match the directory"
+    },
+    "local_currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217; display only"
+    },
     "city": { "type": "string", "minLength": 1, "maxLength": 120 },
     "payout_address": { "type": "string", "pattern": "^[GC][A-Z2-7]{55}$" },
-    "attester": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "Handle of attesters/<handle>.json; must be authorized for country" },
+    "attester": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Handle of attesters/<handle>.json; must be authorized for country"
+    },
     "verified_at": { "type": "string", "format": "date" }
   }
 }
