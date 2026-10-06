@@ -129,7 +129,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 |---|---|---|---|---|---|---|---|---|
 | 0 Foundations | 19 | 12 | 2 | 5 | 0 | 0 | 0 | 63% |
 | 1 M0 Validate | 17 | 0 | 1 | 16 | 0 | 0 | 0 | 0% |
-| 2 Contract + registry | 36 | 16 | 5 | 15 | 0 | 0 | 0 | 44% |
+| 2 Contract + registry | 36 | 20 | 3 | 13 | 0 | 0 | 0 | 56% |
 | 3 SDK + indexer | 19 | 1 | 1 | 17 | 0 | 0 | 0 | 5% |
 | 4 App | 24 | 1 | 1 | 22 | 0 | 0 | 0 | 4% |
 | 5 Testnet pilot | 7 | 0 | 0 | 7 | 0 | 0 | 0 | 0% |
@@ -139,7 +139,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 | 9 Conditional ramp | 9 | 0 | 0 | 0 | 0 | 9 | 0 | n/a |
 | 10 Wave + community | 8 | 1 | 0 | 7 | 0 | 0 | 0 | 13% |
 | 11 Deferred parking lot | 16 | 0 | 0 | 0 | 0 | 16 | 0 | n/a |
-| **All** | **199** | **31** | **10** | **133** | **0** | **25** | **0** | **18%** |
+| **All** | **199** | **35** | **8** | **131** | **0** | **25** | **0** | **20%** |
 
 ---
 
@@ -245,12 +245,12 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 
 | ID | Task | Repo | Pri | Status | Depends on | Done when |
 |---|---|---|---|---|---|---|
-| M1-24 | Scaffold registry: schema, `hash`, `validate` scripts, CI | registry | P0 | IN PROGRESS | G1 | CI validates schema and canonical formatting |
-| M1-25 | `check-onchain` script and `onchain-match` workflow | registry | P0 | TODO | M1-19, M1-24 | Detects hash mismatch against testnet |
+| M1-24 | Scaffold registry: schema, `hash`, `validate` scripts, CI | registry | P0 | DONE | G1 | CI validates schema and canonical formatting |
+| M1-25 | `check-onchain` script and `onchain-match` workflow | registry | P0 | DONE | M1-19, M1-24 | Detects hash mismatch against testnet |
 | M1-26 | Write `ATTESTER_CHECKLIST.md` and a script for trustline, XLM float, test release | registry | P0 | TODO | M0-06 | Checklist runs end to end on testnet |
-| M1-27 | Add testnet fixture payees | registry | P0 | TODO | M1-24 | At least 3 examples across at least 2 countries, no personal data |
+| M1-27 | Add testnet fixture payees | registry | P0 | DONE | M1-24 | At least 3 examples across at least 2 countries, no personal data |
 | M1-28 | `CODEOWNERS` for attesters | registry | P0 | TODO | F-12 | Attester review enforced |
-| M1-29 | Registry: add `country` (ISO 3166-1), `local_currency` (ISO 4217), per-country directories, `supported-countries.json`, `attesters/<handle>.json`, and CI rules (supported country, attester scope, directory match, unique slug) | registry | P0 | IN PROGRESS | M0-16, M1-24 | Each rule has a failing-case test; fixtures cover at least 2 countries |
+| M1-29 | Registry: add `country` (ISO 3166-1), `local_currency` (ISO 4217), per-country directories, `supported-countries.json`, `attesters/<handle>.json`, and CI rules (supported country, attester scope, directory match, unique slug) | registry | P0 | DONE | M0-16, M1-24 | Each rule has a failing-case test; fixtures cover at least 2 countries |
 
 ---
 
@@ -523,6 +523,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-06 | `feat/registry-validation` | registry | DONE: M1-24, M1-25, M1-27, M1-29 | Registry validation (Ajv schemas, canonical formatting, supported country, attester scope, folder match, unique slug, real ISO codes) with 16 failing-case tests; `hash` and `check-onchain` tools. Three fictional fixture payees (KE, NG, PH; School and Rent) with funded testnet payouts holding authorized USDC trustlines, registered on testnet by the attester; `check-onchain` confirms all three match and catches a mismatch. Real `supported-countries.json` unchanged (empty) |
 | 2026-10-06 | `chore/license-and-publishing` | org | DONE: F-10. IN PROGRESS: F-11. DEC-02, DEC-03 resolved | Apache-2.0 for every repo (ADR-0022, `LICENSE` + template); TypeScript packages publish to npm under `@kinlock` from CI on tag (ADR-0023). F-11 waits on an owner creating the npm org and the `NPM_TOKEN` secret. Canonical roadmap re-merged from all repos (picks up M2-01, M3-01) |
 | 2026-10-06 | `chore/ts-tooling` | sdk | DONE: M2-01. DEC-22, DEC-23 resolved (ADR-0021) | Biome (lint + format), Vitest, and tsx added; CI now runs lint, typecheck, test, and build. Tests pin the SDK's public API to the approved list and the contract's enum order, and check the indexer refuses bad config |
 | 2026-10-06 | `chore/roadmap-sync` (lockfile) | sdk | no row changes (M2-01 stays IN PROGRESS: lint and test tooling pending DEC-22) | Commit `pnpm-lock.yaml` for the dependency versions approved by the owner on 2026-10-06, so CI's frozen install works; typecheck and build pass |

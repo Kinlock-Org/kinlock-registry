@@ -1,13 +1,7 @@
-/**
- * Registry validation (roadmap M1-24, M1-29). Planned checks, each failing CI:
- * - payee and attester files match their JSON schemas
- * - files are canonically formatted
- * - payee.country is in supported-countries.json
- * - payee.attester exists and is authorized for payee.country
- * - payee file lives in payees/<lowercase country>/
- * - slug is globally unique and equals the file name
- * - attester handle equals the file name
- *
- * SCAFFOLD: not implemented. JSON Schema validator choice is pending (DEC-23).
- */
-export {};
+/** `pnpm validate`: checks the real registry and the testnet fixtures. Exit 1 on any problem. */
+import { validateRegistry } from "./registry.js";
+
+const { payees, errors } = validateRegistry([".", "fixtures"]);
+for (const e of errors) console.error(`✗ ${e}`);
+console.log(`${payees.length} payee file(s) checked, ${errors.length} problem(s)`);
+process.exit(errors.length ? 1 : 0);

@@ -1,0 +1,11 @@
+{
+  "attester": "kinlock-testnet-attester-1",
+  "category": "School",
+  "city": "Ibadan",
+  "country": "NG",
+  "display_name": "Kinlock Test Academy (fixture)",
+  "local_currency": "NGN",
+  "payout_address": "GDPUY733T3UNZWG4EQMEBHBDGKD33YSFPOI2RB4AIK2JMOENKEXWK7ZG",
+  "slug": "ng-kinlock-test-academy",
+  "verified_at": "2026-10-06"
+}
