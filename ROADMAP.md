@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-05 |
+| **Last updated** | 2026-10-06 |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -127,9 +127,9 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 
 | Phase | Total | DONE | IN PROGRESS | TODO | BLOCKED | DEFERRED | DROPPED | Readiness |
 |---|---|---|---|---|---|---|---|---|
-| 0 Foundations | 19 | 7 | 4 | 8 | 0 | 0 | 0 | 37% |
-| 1 M0 Validate | 17 | 0 | 0 | 17 | 0 | 0 | 0 | 0% |
-| 2 Contract + registry | 30 | 0 | 4 | 26 | 0 | 0 | 0 | 0% |
+| 0 Foundations | 19 | 11 | 1 | 7 | 0 | 0 | 0 | 58% |
+| 1 M0 Validate | 17 | 0 | 1 | 16 | 0 | 0 | 0 | 0% |
+| 2 Contract + registry | 36 | 16 | 5 | 15 | 0 | 0 | 0 | 44% |
 | 3 SDK + indexer | 19 | 0 | 2 | 17 | 0 | 0 | 0 | 0% |
 | 4 App | 24 | 0 | 2 | 22 | 0 | 0 | 0 | 0% |
 | 5 Testnet pilot | 7 | 0 | 0 | 7 | 0 | 0 | 0 | 0% |
@@ -137,9 +137,9 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 | 7 Hardening | 26 | 0 | 0 | 26 | 0 | 0 | 0 | 0% |
 | 8 Launch | 8 | 0 | 0 | 8 | 0 | 0 | 0 | 0% |
 | 9 Conditional ramp | 9 | 0 | 0 | 0 | 0 | 9 | 0 | n/a |
-| 10 Wave + community | 8 | 0 | 1 | 7 | 0 | 0 | 0 | 0% |
+| 10 Wave + community | 8 | 1 | 0 | 7 | 0 | 0 | 0 | 13% |
 | 11 Deferred parking lot | 16 | 0 | 0 | 0 | 0 | 16 | 0 | n/a |
-| **All** | **193** | **7** | **13** | **148** | **0** | **25** | **0** | **4%** |
+| **All** | **199** | **28** | **11** | **135** | **0** | **25** | **0** | **16%** |
 
 ---
 
@@ -157,16 +157,16 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 | F-05 | Write `CLAUDE.md` | org | P0 | DONE | F-04 | Imports `AGENTS.md`; checklists present |
 | F-06 | Write `project_structure.md` | org | P0 | DONE | F-02 | Repo layouts and ownership documented |
 | F-07 | Write `ROADMAP.md` and the update rule | org | P0 | DONE | F-04 | This file; rule added to instruction files and docs |
-| F-08 | Confirm org name availability and create the GitHub org (`kinlock` or backup) | org | P0 | TODO | — | Org exists; owners set |
+| F-08 | Confirm org name availability and create the GitHub org (`kinlock` or backup) | org | P0 | DONE | — | Org exists; owners set |
 | F-09 | Create org `.github` repo: profile README, CoC, CONTRIBUTING, SECURITY, SUPPORT, canonical `docs/`, `templates/` | org | P0 | IN PROGRESS | F-08 | Repo public; docs and templates committed |
 | F-10 | Decide license (org-wide) | org | P0 | TODO | F-08 | ADR written; `LICENSE` template ready |
 | F-11 | Decide npm scope and publish rights | org | P0 | TODO | F-08 | Scope reserved; publish tokens/process documented |
 | F-12 | Create GitHub teams: maintainers, contract-reviewers, attesters | org | P0 | TODO | F-08 | Teams exist; handles match `CODEOWNERS` |
 | F-13 | Create label set across repos (`security-sensitive`, `good first issue`, `wave`, `area:*`, `blocked:m0`, `deferred`) | org | P0 | TODO | F-08 | Labels applied via script |
-| F-14 | Write `scripts/sync-docs` and the `docs-in-sync` CI job | org | P0 | IN PROGRESS | F-09 | CI fails when a vendored copy drifts |
-| F-15 | Write `roadmap-check` CI job and `scripts/roadmap-progress` and `scripts/roadmap-merge` | org | P0 | IN PROGRESS | F-09 | CI fails PRs without roadmap update; scripts produce correct counts and merges |
+| F-14 | Write `scripts/sync-docs` and the `docs-in-sync` CI job | org | P0 | DONE | F-09 | CI fails when a vendored copy drifts |
+| F-15 | Write `roadmap-check` CI job and `scripts/roadmap-progress` and `scripts/roadmap-merge` | org | P0 | DONE | F-09 | CI fails PRs without roadmap update; scripts produce correct counts and merges |
 | F-16 | Define branch protection and repo settings (required reviews, required checks, no force-push to `main`) | org | P0 | TODO | F-12 | Applied to all repos; documented |
-| F-17 | Create PR template and issue templates (bug, feature, wave-task) with Roadmap section | org | P0 | IN PROGRESS | F-09 | Templates live in org `.github` and each repo |
+| F-17 | Create PR template and issue templates (bug, feature, wave-task) with Roadmap section | org | P0 | DONE | F-09 | Templates live in org `.github` and each repo |
 | F-18 | Cross-doc consistency review after any M0-driven change | org | P1 | TODO | M0-12 | All docs agree; ADR index current |
 | F-19 | Reconcile docs with scaffold findings: Next.js 16 renamed `middleware.ts` to `proxy.ts`; contract `tests/` must live in `contracts/kinlock/tests/` (a virtual Cargo workspace root can't hold integration tests); GitHub org is `Kinlock-Org`, not `kinlock`; request-link helpers are not in the SDK public API list; `TrancheInput` type added for `create_lock`; accept ADR-0017 and add it to the ADR indexes | org | P1 | TODO | — | Docs and scaffold agree; ADR-0017 accepted or rejected |
 
@@ -187,7 +187,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 | M0-05 | Off-ramp spike **per candidate market**: identify local-currency anchors and wallet routes (or whether payees can simply hold USDC); test SEP-1/10/24 on testnet; record assets, minimums, fees | org | P0 | TODO | — | Table of viable routes or a documented "none" |
 | M0-06 | Payee usability test: onboard 3–5 payees on testnet using the attester checklist | org | P0 | TODO | M0-02 | Task completion rates and pain points recorded |
 | M0-07 | Counsel intro call; written scoping of legal questions **per candidate market** (stablecoin acceptance by domestic payees, money transmission, sanctions and restricted jurisdictions, data protection including where senders live, terms) | org | P0 | TODO | — | Counsel engaged; question list and timeline agreed |
-| M0-08 | Verify network facts: max entry TTL, RPC event retention, SAC/trustline failure behavior, USDC issuer flags (freeze, authorization, clawback) | contracts | P0 | TODO | — | Findings written; `MAX_LOCK_DURATION` confirmed or changed via ADR |
+| M0-08 | Verify network facts: max entry TTL, RPC event retention, SAC/trustline failure behavior, USDC issuer flags (freeze, authorization, clawback) | contracts | P0 | IN PROGRESS | — | Findings written; `MAX_LOCK_DURATION` confirmed or changed via ADR |
 | M0-09 | Research archive/backfill options for receipt verification (tier 3) and indexer gap recovery | sdk | P0 | TODO | M0-08 | Option chosen and costed; ADR drafted |
 | M0-10 | Review Drips Wave rules: application limits, KYC, issue-sizing guidelines | org | P1 | TODO | — | Short note; Wave plan (`W-01`) adjusted |
 | M0-11 | Write M0 findings report and go / pivot / stop decision against `PRD.md` §8.2 | org | P0 | TODO | M0-01..M0-09 | Report committed; decision recorded in §10 |
@@ -212,28 +212,34 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 |---|---|---|---|---|---|---|
 | M1-01 | Scaffold workspace: Cargo workspace, `rust-toolchain.toml`, empty modules, CI (fmt, clippy, test, build), `localnet.sh` | contracts | P0 | IN PROGRESS | G1 | CI green on empty skeleton; one-command local network |
 | M1-02 | Implement `constants.rs`, `types.rs`, `errors.rs`, `events.rs`, `storage.rs` | contracts | P0 | IN PROGRESS | M1-01 | Match `ARCHITECTURE.md` §4; enums append-only; events carry `schema_version` |
-| M1-03 | Admin functions: `init`, attester add/remove, token add/remove, `set_paused_new_locks`, `set_caps`, `upgrade` | contracts | P0 | TODO | M1-02 | Auth tested; pause blocks only `create_lock` |
-| M1-04 | Registry: `register_payee`, `set_status`, `update_payout` | contracts | P0 | TODO | M1-02 | Status transitions enforced; payout update affects new locks only |
-| M1-05 | Vault: `create_lock` with all validations (token, payee Active, min/max, ≤12 tranches, `unlock_at ≤ expires_at`, max duration, `sender ≠ payout`, caps) | contracts | P0 | TODO | M1-04 | Each validation has a failing test |
-| M1-06 | Vault: `release` (payee only; `unlock_at ≤ now < expires_at`; state before transfer) | contracts | P0 | TODO | M1-05 | Boundary tests pass |
-| M1-07 | Vault: `refund` (expired, Revoked, Suspended past grace) | contracts | P0 | TODO | M1-05 | All three paths and rejections tested |
-| M1-08 | Vault: `decline` | contracts | P0 | TODO | M1-05 | Returns only remainder; payee-only |
-| M1-09 | `bump_lock` and TTL policy on create and on terminal states | contracts | P0 | TODO | M1-05, M0-08 | TTL ≥ `expires_at + TTL_GRACE`; permissionless bump tested |
-| M1-10 | `total_locked` bookkeeping and cap enforcement | contracts | P1 | TODO | M1-05 | Invariant 9 holds under property tests |
-| M1-11 | Unit tests for every entry point (success and each failure) | contracts | P0 | TODO | M1-03..M1-09 | Coverage of every error variant |
-| M1-12 | Explicit-auth tests (not only `mock_all_auths`) | contracts | P0 | TODO | M1-11 | Every privileged function asserts `env.auths()` |
-| M1-13 | Boundary tests: `now == unlock_at`, `expires_at - 1`, `expires_at` | contracts | P0 | TODO | M1-06, M1-07 | Pass |
-| M1-14 | Property tests for invariants 1–10 | contracts | P0 | TODO | M1-11 | `proptest` sequences green over many runs |
+| M1-03 | Admin functions: `init`, attester add/remove, token add/remove, `set_paused_new_locks`, `set_caps`, `upgrade` | contracts | P0 | DONE | M1-02 | Auth tested; pause blocks only `create_lock` |
+| M1-04 | Registry: `register_payee`, `set_status`, `update_payout` | contracts | P0 | DONE | M1-02 | Status transitions enforced; payout update affects new locks only |
+| M1-05 | Vault: `create_lock` with all validations (token, payee Active, min/max, ≤12 tranches, `unlock_at ≤ expires_at`, max duration, `sender ≠ payout`, caps) | contracts | P0 | DONE | M1-04 | Each validation has a failing test |
+| M1-06 | Vault: `release` (payee only; `unlock_at ≤ now < expires_at`; state before transfer) | contracts | P0 | DONE | M1-05 | Boundary tests pass |
+| M1-07 | Vault: `refund` (expired, Revoked, Suspended past grace) | contracts | P0 | DONE | M1-05 | All three paths and rejections tested |
+| M1-08 | Vault: `decline` | contracts | P0 | DONE | M1-05 | Returns only remainder; payee-only |
+| M1-09 | `bump_lock` and TTL policy on create and on terminal states | contracts | P0 | IN PROGRESS | M1-05, M0-08 | TTL ≥ `expires_at + TTL_GRACE`; permissionless bump tested |
+| M1-10 | `total_locked` bookkeeping and cap enforcement | contracts | P1 | DONE | M1-05 | Invariant 9 holds under property tests |
+| M1-11 | Unit tests for every entry point (success and each failure) | contracts | P0 | DONE | M1-03..M1-09 | Coverage of every error variant |
+| M1-12 | Explicit-auth tests (not only `mock_all_auths`) | contracts | P0 | DONE | M1-11 | Every privileged function asserts `env.auths()` |
+| M1-13 | Boundary tests: `now == unlock_at`, `expires_at - 1`, `expires_at` | contracts | P0 | DONE | M1-06, M1-07 | Pass |
+| M1-14 | Property tests for invariants 1–10 | contracts | P0 | DONE | M1-11 | `proptest` sequences green over many runs |
 | M1-15 | Integration tests: C-address sender and payee, missing/unauthorized trustline, partial release then refund/decline, allowlist removal with open locks | contracts | P0 | TODO | M1-11 | Pass on local network |
 | M1-16 | Budget tests with `soroban-budget-assert`; compare local estimates to testnet simulation | contracts | P0 | TODO | M1-11 | Budgets recorded; divergence measured and documented |
-| M1-17 | `deploy.sh` (testnet default, mainnet guarded), `deployments/testnet.json`, generated `DEPLOYMENTS.md` | contracts | P0 | TODO | M1-11 | Deploys to testnet; mainnet requires flag and confirmation |
+| M1-17 | `deploy.sh` (testnet default, mainnet guarded), `deployments/testnet.json`, generated `DEPLOYMENTS.md` | contracts | P0 | DONE | M1-11 | Deploys to testnet; mainnet requires flag and confirmation |
 | M1-18 | Generate TS bindings and publish pipeline | contracts | P0 | TODO | M1-17, F-11 | Package published on tag; SDK can consume |
-| M1-19 | Deploy to testnet with a test multisig admin; add test attesters and testnet USDC | contracts | P0 | TODO | M1-17 | Contract ID recorded in `DEPLOYMENTS.md` |
+| M1-19 | Deploy to testnet with a test multisig admin; add test attesters and testnet USDC | contracts | P0 | DONE | M1-17 | Contract ID recorded in `DEPLOYMENTS.md` |
 | M1-20 | Upgrade/migration test against a snapshot of testnet state | contracts | P1 | TODO | M1-19 | Invariants hold after upgrade |
 | M1-21 | Contract `README`, `SECURITY.md`, and threat-model doc linked to invariants | contracts | P1 | TODO | M1-14 | Reviewer can map each threat to a control |
 | M1-22 | Internal review using the `CLAUDE.md` contract checklist; fix findings | contracts | P0 | TODO | M1-16 | Checklist completed with evidence |
 | M1-23 | Decide optional `refund_to` (ADR) | contracts | P2 | TODO | M1-05 | ADR accepted or declined |
 | M1-30 | Source `soroban-budget-assert` (not published on crates.io) or choose an alternative for budget tests | contracts | P0 | TODO | — | Crate usable from CI; `M1-16` can start |
+| M1-31 | Finish M1-03/M1-04 "Done when" once locks exist: tests that pause and token removal block only `create_lock`, and that `update_payout` leaves existing locks' payout unchanged | contracts | P0 | DONE | M1-05 | Tests pass; M1-03 and M1-04 can be marked `DONE` |
+| M1-32 | Upgrade auth and success test with a real uploaded WASM (an unknown hash also fails, so today's test can't isolate auth) | contracts | P0 | DONE | M1-17 | Upgrade signed by admin succeeds and asserts `env.auths()`; intruder-signed upgrade fails |
+| M1-33 | Reconcile `MAX_LOCK_DURATION` (180 days) with the network max entry TTL: testnet is 3,110,400 ledgers (~180 days at 5 s), so lock + 30-day grace caps expiry at ~150 days today. Set tests to the real max TTL | contracts | P0 | DONE | DEC-07 | Constant and tests match the network; ADR updated |
+| M1-34 | Decide `bump_lock` behavior when the full TTL no longer fits (clamp vs error) and after `expires_at + TTL_GRACE`; decide whether to convert seconds to ledgers more conservatively than 5 s | contracts | P1 | TODO | M1-33 | Decision recorded; tests cover it |
+| M1-35 | Spec decisions from the vault review: tranches with `unlock_at == expires_at` can never be released; suspend/re-activate toggling restarts the sender's refund grace | contracts | P1 | TODO | — | ADR accepted; code and tests follow it |
+| M1-36 | Failed token transfers surface the token's error code, which collides with Kinlock codes (SAC code 10 decodes as `PayeeAlreadyExists`); decide on a dedicated error or document it for the SDK | contracts | P1 | TODO | — | Decision recorded; SDK handles it |
 
 ### 6.2 `kinlock-registry`
 
@@ -340,7 +346,7 @@ Resolve each with an ADR and link it here. Move resolved rows to the bottom with
 | DEC-04 | Canonical docs location (org `.github`, recommended) | F-09 | Open |
 | DEC-05 | Commit Soroban `test_snapshots/` (default: ignore) | M1-01 | Open |
 | DEC-06 | Package manager (default: pnpm) | M2-01 | Open |
-| DEC-07 | Max lock duration (90 or 180 days) given network max TTL | M0-08 | Open |
+| DEC-07 | Max lock duration (90 or 180 days) given network max TTL | M0-08 | Resolved 2026-10-05: 149 days (ADR-0020) |
 | DEC-08 | Optional `refund_to` | M1-23 | Open |
 | DEC-09 | Tier-3 archive and backfill source | M0-09 | Open |
 | DEC-10 | Rate source for indicative local-currency display across currencies | M3-16 | Open |
@@ -477,7 +483,7 @@ Resolve each with an ADR and link it here. Move resolved rows to the bottom with
 |---|---|---|---|---|---|---|
 | W-01 | Prepare Wave applications per repo (description, README, issues), within program limits | org | P1 | TODO | M0-10 | Applications submitted for the four active repos |
 | W-02 | Seed issues: tests and docs in contracts (security-aware), registry tooling, app UI, SDK, indexer fixtures | all | P1 | TODO | M1-01 | Backlog exists; security-sensitive issues excluded from open contribution |
-| W-03 | Org and repo `CONTRIBUTING.md` including the roadmap rule | org | P0 | IN PROGRESS | F-09 | Rule stated prominently |
+| W-03 | Org and repo `CONTRIBUTING.md` including the roadmap rule | org | P0 | DONE | F-09 | Rule stated prominently |
 | W-04 | Contributor quick-start tested on a clean machine for each repo | all | P1 | TODO | M3-01 | New contributor runs tests in under 15 minutes |
 | W-05 | Issue sizing guide aligned with current program guidelines | org | P1 | TODO | M0-10 | Guide published |
 | W-06 | PR review SLAs and triage routine | org | P1 | TODO | F-12 | Documented; rota exists |
@@ -517,6 +523,16 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-06 | `chore/roadmap-merge` | org | DONE: F-08, F-14, F-15, F-17, W-03 | Added `scripts/roadmap-merge` (three-way merge against the last merged copy; conflicts reported, never guessed) and merged every repo's ROADMAP.md into the canonical copy, then synced it to all repos. Verified: org exists with an owner; `docs-in-sync` and `roadmap-check` fail and pass correctly; templates and the CONTRIBUTING rule are in every repo. F-09 stays IN PROGRESS (code of conduct is still a draft) |
+| 2026-10-06 | `chore/testnet-multisig-deploy` | contracts | DONE: M1-19 | Testnet contract `CCSHDQFRYFC3AHV5NE6ULQW6X2CMG5RPANBORDXJGSUD6UKECASJQBRI` with a 2-of-3 multisig admin (verified: one signature rejected `TxBadAuth`, two accepted), test attester added, Circle testnet USDC allowlisted. Adds `scripts/multisig-invoke.sh` and `deployments/testnet-setup.md`; vendored docs resynced (ADR-0020). Supersedes the single-key contract `CDIPDHSA…TLYL` |
+| 2026-10-06 | `feat/deploy-script` | contracts | DONE: M1-17 | `scripts/deploy.sh` (testnet/local, guarded mainnet, dry run, uploaded-hash check) and `scripts/gen-deployments-md.sh`. Deployed to testnet: `CDIPDHSAKP2MNANLYV6VRWVTWFJH3PQRHBRDBVMYNMRYKSR66JVPTLYL`, single-key admin `kinlock-testnet-deployer` (multisig admin, attesters, and testnet USDC remain M1-19) |
+| 2026-10-06 | `test/close-m1-11-m1-12` | contracts | DONE: M1-11, M1-12, M1-32 | Removed never-returned errors `AlreadyInitialized` (1) and `TrancheSumMismatch` (27), codes retired; every remaining error variant is now covered by a test. Upgrade tested with the real compiled WASM (admin auth asserted, state survives, intruder fails). CI installs stellar-cli 27.0.0 (checksum-verified) and builds the WASM before clippy and tests |
+| 2026-10-06 | `test/property-invariants` | contracts | DONE: M1-14, M1-10 | Property tests for invariants 1–10: random sequences (create, release, refund, decline, status and payout changes, time jumps and exact boundaries, pause, allowlist and roster changes, frozen accounts) check every invariant after every step, and that release/refund/decline succeed exactly when the spec allows. Green over 512 cases; catches 13–14 of 14 injected vault bugs per 64-case run. Started before M1-11 was DONE, at the owner's request |
+| 2026-10-05 | `fix/max-lock-duration` | contracts | DONE: M1-33. DEC-07 resolved | `MAX_LOCK_DURATION` = 149 days: testnet `max_entry_ttl` is 3,110,400 ledgers and a contract can extend to one ledger less, so 150 + 30-day grace doesn't fit. Tests now run with the real network limit |
+| 2026-10-05 | `feat/vault` | contracts | DONE: M1-03, M1-04, M1-05, M1-06, M1-07, M1-08, M1-13, M1-31. IN PROGRESS: M1-09, M1-10, M1-11, M0-08. Added: M1-33, M1-34, M1-35, M1-36 | Vault: `create_lock`, `release`, `refund`, `decline`, `bump_lock`, `get_lock`; lock and payee TTL kept to `expires_at + TTL_GRACE` (`LockTtlTooLong` otherwise); `InvalidPayout`; `set_caps` sanity; storage version. 103 tests; 19 mutation checks caught; independent review: no critical/high. Testnet `max_entry_ttl` read as 3,110,400 ledgers (M0-08, M1-33). Vendored `docs/adr/` resynced with ADR-0018 and ADR-0019 |
+| 2026-10-05 | `feat/admin-registry` | contracts | IN PROGRESS: M1-03, M1-04, M1-12 (M1-02 stays IN PROGRESS). Added: M1-31, M1-32 | Admin functions (constructor replaces `init`), payee registry (`register_payee`, `set_status`, `update_payout`, `get_payee`), TTL extension for long-lived entries, new errors `InvalidCap`, `PayoutUnchanged`, `PayeeRevoked`; 42 unit, auth, event, and TTL tests; independent review findings addressed. Started ahead of G1 at the owner's request |
+| 2026-10-05 | `docs/adr-vault` | org | DEC-07 resolved (no row changes) | ADR-0020: vault validation and storage-lifetime rules (LockTtlTooLong, InvalidPayout, set_caps sanity, storage version); `MAX_LOCK_DURATION` = 149 days in ARCHITECTURE, ESSENTIALS, and PRD |
+| 2026-10-05 | `docs/adr-admin-registry` | org | no row changes | ADR-0018 (constructor initialization, explicit caller parameters) and ADR-0019 (removed attesters lose payee powers), recording decisions approved for `kinlock-contracts` `feat/admin-registry`. Doc text updates remain under F-19 |
 | 2026-10-05 | scaffold (requested by owner; branch `chore/scaffold` in each repo, uncommitted) | all | IN PROGRESS: F-09, F-14, F-15, F-17, W-03, M1-01, M1-02, M1-24, M1-29, M2-01, M2-11, M3-01, M3-23. Added: F-19, M1-30, DEC-22, DEC-23 | Scaffolded org `.github` (docs, 16 ADRs + proposed ADR-0017, templates, `sync-docs.sh`, `roadmap-progress`) and the contracts, registry, sdk, and app repos with data models and stubs. Done ahead of G1 at the owner's request. `kinlock-ramp` left untouched (conditional). Counts refreshed with `scripts/roadmap-progress` |
 | 2026-10-05 | scope change (requested by owner) | org | Edited: M0-01, M0-02, M0-05, M0-07, M1-27, M3-06, M3-16, H-11, D-03, D-14, DEC-10, DEC-11, §1 items 5 and 9. Added: M0-16, M0-17, M1-29, M2-19, M3-23, M3-24, H-25, H-26, P-07, L-08, D-16, DEC-19..21 | Product generalized from "abroad to Nigeria" to worldwide (market-by-market launch). Docs bumped to v0.3; country-agnostic-core rule added to `AGENTS.md`, `CLAUDE.md`, `ARCHITECTURE_ESSENTIALS.md`. §1 edited with the owner's approval |
 | 2026-10-05 | initial | org | F-01..F-07 | Roadmap created; docs v0.2 baseline recorded; update rule added to `AGENTS.md`, `CLAUDE.md`, `project_structure.md`, `PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md` |
