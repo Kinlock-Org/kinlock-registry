@@ -1,7 +1,11 @@
-# DRAFT (ask-first: CI). Schema, formatting, supported country, attester scope, slug uniqueness. Row: M1-24, M1-29.
+# Registry rules on every PR: lint, typecheck, tests, and validation of the real registry and
+# the testnet fixtures (schema, canonical formatting, supported country, attester scope,
+# folder/country match, unique slug, ISO codes). Roadmap M1-24, M1-29.
 name: validate
 on:
   pull_request:
+  push:
+    branches: [main]
 permissions:
   contents: read
 jobs:
@@ -9,4 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Registry validation not implemented yet (M1-24)."
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm validate

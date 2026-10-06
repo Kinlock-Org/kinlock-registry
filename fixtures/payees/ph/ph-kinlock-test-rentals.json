@@ -1,0 +1,11 @@
+{
+  "attester": "kinlock-testnet-attester-1",
+  "category": "Rent",
+  "city": "Quezon City",
+  "country": "PH",
+  "display_name": "Kinlock Test Rentals (fixture)",
+  "local_currency": "PHP",
+  "payout_address": "GBXKOYQ4MJ6UJGQBFXVXOP7XL7SKKJTFTYJUSNREP5FW4IHXPMWY2WSX",
+  "slug": "ph-kinlock-test-rentals",
+  "verified_at": "2026-10-06"
+}

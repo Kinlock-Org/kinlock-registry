@@ -6,7 +6,10 @@ Public payee and attester data, JSON schemas, and the hash and policy checks tha
 
 ## Quick start
 ```
-pnpm validate               # not implemented yet (M1-24)
+pnpm install
+pnpm validate               # registry + testnet fixtures
+pnpm hash <payee-file>      # payee_id and meta_hash for register_payee
+pnpm check-onchain          # fixtures vs the testnet contract
 ```
 
 ## Read first

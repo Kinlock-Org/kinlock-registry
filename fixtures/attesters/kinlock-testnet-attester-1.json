@@ -1,0 +1,10 @@
+{
+  "address": "GCZRNEOGZH7FVJTA4OQN2YQ5LMS7LSV2GP7PWJFC73SMSLPA56DRAPQT",
+  "countries": [
+    "KE",
+    "NG",
+    "PH"
+  ],
+  "display_name": "Kinlock testnet attester (fixture)",
+  "handle": "kinlock-testnet-attester-1"
+}

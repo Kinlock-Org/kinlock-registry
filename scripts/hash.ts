@@ -1,21 +1,15 @@
 /**
- * meta_hash = SHA-256 of the canonical JSON of a payee file:
- * keys sorted recursively, compact (no whitespace), UTF-8. Not RFC 8785 (ARCHITECTURE.md §5.3, O15).
- * Never compute hashes by hand; always use this script.
+ * `pnpm hash <payee-file>`: prints the `payee_id` and `meta_hash` an attester passes to
+ * `register_payee`. Never compute these by hand.
  */
-import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { metaHash, payeeId } from "./registry.js";
 
-type Json = null | boolean | number | string | Json[] | { [key: string]: Json };
-
-export function canonicalize(value: Json): string {
-  if (Array.isArray(value)) return `[${value.map(canonicalize).join(",")}]`;
-  if (value !== null && typeof value === "object") {
-    const keys = Object.keys(value).sort();
-    return `{${keys.map((k) => `${JSON.stringify(k)}:${canonicalize(value[k] as Json)}`).join(",")}}`;
-  }
-  return JSON.stringify(value);
+const file = process.argv[2];
+if (!file) {
+  console.error("usage: pnpm hash <payee-file>");
+  process.exit(2);
 }
-
-export function metaHash(value: Json): string {
-  return createHash("sha256").update(canonicalize(value), "utf8").digest("hex");
-}
+const payee = JSON.parse(readFileSync(file, "utf8"));
+console.log(`payee_id  ${payeeId(payee.slug)}`);
+console.log(`meta_hash ${metaHash(payee)}`);

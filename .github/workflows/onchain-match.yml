@@ -1,4 +1,6 @@
-# DRAFT (ask-first: CI). Scheduled check that on-chain meta_hash matches each payee file. Row: M1-25.
+# Daily (and on demand): every fixture payee registered on testnet must match its file
+# (meta_hash, payout, category, attester, Active). Not run on PRs: a new payee is registered
+# on-chain only after its PR merges. Roadmap M1-25.
 name: onchain-match
 on:
   schedule:
@@ -11,4 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "On-chain match not implemented yet (M1-25)."
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check-onchain
