@@ -1,6 +1,7 @@
 {
   "name": "kinlock-registry",
   "private": true,
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "validate": "echo 'not implemented yet (M1-24)' && exit 1",
