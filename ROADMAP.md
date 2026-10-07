@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-06 |
+| **Last updated** | 2026-10-07 |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -342,7 +342,7 @@ Resolve each with an ADR and link it here. Move resolved rows to the bottom with
 |---|---|---|---|
 | DEC-01 | Org name final (`kinlock` or backup) | F-08 | Open |
 | DEC-02 | License | F-10 | Resolved 2026-10-06: Apache-2.0 (ADR-0022) |
-| DEC-03 | npm scope and publish rights | F-11 | Resolved 2026-10-06: public npm, scope @kinlock, CI publishes on tag (ADR-0023) |
+| DEC-03 | npm scope and publish rights | F-11 | Resolved 2026-10-06: public npm, scope @kinlock, CI publishes on tag (ADR-0023). Superseded 2026-10-07: CI attaches package tarballs to GitHub Releases on tag; names stay @kinlock/... ([ADR-0026](docs/adr/0026-github-release-packages.md)) |
 | DEC-04 | Canonical docs location (org `.github`, recommended) | F-09 | Open |
 | DEC-05 | Commit Soroban `test_snapshots/` (default: ignore) | M1-01 | Open |
 | DEC-06 | Package manager (default: pnpm) | M2-01 | Open |
@@ -523,6 +523,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-07 | kinlock-registry docs/sync-adr-0026 | registry | DEC-03 amended (no row changes) | Sync docs from .github: ADR-0026 (packages as GitHub Release tarballs) and ADR-0023 marked superseded |
 | 2026-10-06 | `feat/registry-validation` | registry | DONE: M1-24, M1-25, M1-27, M1-29 | Registry validation (Ajv schemas, canonical formatting, supported country, attester scope, folder match, unique slug, real ISO codes) with 16 failing-case tests; `hash` and `check-onchain` tools. Three fictional fixture payees (KE, NG, PH; School and Rent) with funded testnet payouts holding authorized USDC trustlines, registered on testnet by the attester; `check-onchain` confirms all three match and catches a mismatch. Real `supported-countries.json` unchanged (empty) |
 | 2026-10-06 | `chore/license-and-publishing` | org | DONE: F-10. IN PROGRESS: F-11. DEC-02, DEC-03 resolved | Apache-2.0 for every repo (ADR-0022, `LICENSE` + template); TypeScript packages publish to npm under `@kinlock` from CI on tag (ADR-0023). F-11 waits on an owner creating the npm org and the `NPM_TOKEN` secret. Canonical roadmap re-merged from all repos (picks up M2-01, M3-01) |
 | 2026-10-06 | `chore/ts-tooling` | sdk | DONE: M2-01. DEC-22, DEC-23 resolved (ADR-0021) | Biome (lint + format), Vitest, and tsx added; CI now runs lint, typecheck, test, and build. Tests pin the SDK's public API to the approved list and the contract's enum order, and check the indexer refuses bad config |
