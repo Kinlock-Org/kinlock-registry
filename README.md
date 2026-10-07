@@ -2,7 +2,7 @@
 
 Public payee and attester data, JSON schemas, and the hash and policy checks that bind it to the contract.
 
-> **Status: scaffold.** Structure and data models are drafted; features are not built. Testnet only.
+> **Status: active development, testnet only.** Schema validation, hashing, and on-chain match checks are implemented, with testnet fixture payees across two countries. See `ROADMAP.md`.
 
 ## Quick start
 ```
