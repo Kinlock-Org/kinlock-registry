@@ -23,3 +23,5 @@ pnpm check-onchain          # fixtures vs the testnet contract
 - `ROADMAP.md`: **every PR updates it**
 
 Docs in `docs/` are read-only copies synced from [Kinlock-Org/.github](https://github.com/Kinlock-Org/.github).
+
+Found a documentation gap (missing, unclear, or outdated docs)? File it at [Kinlock-Org.github.io](https://github.com/Kinlock-Org/Kinlock-Org.github.io/issues/new/choose) with `area:registry`, the org's documentation hub, not here.
