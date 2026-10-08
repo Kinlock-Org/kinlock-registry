@@ -1,8 +1,13 @@
 # kinlock-registry
 
+[![Validate](https://github.com/Kinlock-Org/kinlock-registry/actions/workflows/validate.yml/badge.svg)](https://github.com/Kinlock-Org/kinlock-registry/actions/workflows/validate.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+
 Public payee and attester data, JSON schemas, and the hash and policy checks that bind it to the contract.
 
 > **Status: active development, testnet only.** Schema validation, hashing, and on-chain match checks are implemented, with testnet fixture payees across two countries. See `ROADMAP.md`.
+
+**Try it live (testnet):** [kinlock-app.vercel.app](https://kinlock-app.vercel.app)
 
 ## Quick start
 ```

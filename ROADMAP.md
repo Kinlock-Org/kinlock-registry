@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-07 (SCF open-source readiness fixes) |
+| **Last updated** | 2026-10-08 (live app link) |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -523,6 +523,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-08 | `docs/live-app-link` | registry | no row changes | Linked the live testnet app (`kinlock-app.vercel.app`, `M3-22`) from README; also set as the repo's GitHub "Website" field |
 | 2026-10-07 | `docs/scf-readiness-fixes` | registry | no row changes (org rows W-09/F-12 tracked in `.github`) | Part of an org-wide SCF open-source readiness audit (see `.github` `docs/scf-readiness.md`): filled the unfilled `Copyright [yyyy] [name of copyright owner]` placeholder in `LICENSE` and added `ISSUE_TEMPLATE/config.yml` (GitHub's community-profile check was reporting `issue_template: false` despite templates existing) |
 | 2026-10-07 | `docs/readme-status-banner` | registry | no row changes | README said "scaffold... features are not built," which is stale (schema validation, hashing, and on-chain match checks are implemented with testnet fixtures). Corrected the status banner to match current progress; supports org-level `W-01` Wave-readiness |
 | 2026-10-07 | kinlock-registry docs/sync-adr-0026 | registry | DEC-03 amended (no row changes) | Sync docs from .github: ADR-0026 (packages as GitHub Release tarballs) and ADR-0023 marked superseded |
