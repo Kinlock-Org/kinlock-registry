@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-08 (docs site link) |
+| **Last updated** | 2026-10-08 (M1-26 attester script) |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -129,7 +129,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 |---|---|---|---|---|---|---|---|---|
 | 0 Foundations | 19 | 12 | 2 | 5 | 0 | 0 | 0 | 63% |
 | 1 M0 Validate | 17 | 0 | 1 | 16 | 0 | 0 | 0 | 0% |
-| 2 Contract + registry | 36 | 20 | 3 | 13 | 0 | 0 | 0 | 56% |
+| 2 Contract + registry | 36 | 20 | 4 | 12 | 0 | 0 | 0 | 56% |
 | 3 SDK + indexer | 19 | 1 | 1 | 17 | 0 | 0 | 0 | 5% |
 | 4 App | 24 | 1 | 1 | 22 | 0 | 0 | 0 | 4% |
 | 5 Testnet pilot | 7 | 0 | 0 | 7 | 0 | 0 | 0 | 0% |
@@ -139,7 +139,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 | 9 Conditional ramp | 9 | 0 | 0 | 0 | 0 | 9 | 0 | n/a |
 | 10 Wave + community | 8 | 1 | 0 | 7 | 0 | 0 | 0 | 13% |
 | 11 Deferred parking lot | 16 | 0 | 0 | 0 | 0 | 16 | 0 | n/a |
-| **All** | **199** | **35** | **8** | **131** | **0** | **25** | **0** | **20%** |
+| **All** | **199** | **35** | **9** | **130** | **0** | **25** | **0** | **20%** |
 
 ---
 
@@ -247,7 +247,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 |---|---|---|---|---|---|---|
 | M1-24 | Scaffold registry: schema, `hash`, `validate` scripts, CI | registry | P0 | DONE | G1 | CI validates schema and canonical formatting |
 | M1-25 | `check-onchain` script and `onchain-match` workflow | registry | P0 | DONE | M1-19, M1-24 | Detects hash mismatch against testnet |
-| M1-26 | Write `ATTESTER_CHECKLIST.md` and a script for trustline, XLM float, test release | registry | P0 | TODO | M0-06 | Checklist runs end to end on testnet |
+| M1-26 | Write `ATTESTER_CHECKLIST.md` and a script for trustline, XLM float, test release | registry | P0 | IN PROGRESS | M0-06 | Checklist runs end to end on testnet |
 | M1-27 | Add testnet fixture payees | registry | P0 | DONE | M1-24 | At least 3 examples across at least 2 countries, no personal data |
 | M1-28 | `CODEOWNERS` for attesters | registry | P0 | TODO | F-12 | Attester review enforced |
 | M1-29 | Registry: add `country` (ISO 3166-1), `local_currency` (ISO 4217), per-country directories, `supported-countries.json`, `attesters/<handle>.json`, and CI rules (supported country, attester scope, directory match, unique slug) | registry | P0 | DONE | M0-16, M1-24 | Each rule has a failing-case test; fixtures cover at least 2 countries |
@@ -523,6 +523,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-08 | `docs/m1-26-attester-script` | registry | IN PROGRESS: M1-26 | Added `scripts/check-attester-readiness.ts` (`pnpm check-attester-readiness <payout-address>`): read-only checks for account existence, native XLM float, and an authorized USDC trustline with room, via direct ledger-entry reads (no new dependency). Verified against real testnet data, not just type-checked: ran it against the real testnet attester address and confirmed correct output (XLM float ✓, trustline ✗ as expected, since that address has none). Finalized `ATTESTER_CHECKLIST.md` to reference the script. Left `IN PROGRESS`, not `DONE`: the row's "runs end to end on testnet" criterion needs a real attester to complete it (`M0-06`), which hasn't happened. Progress toward issue #7 (seeded under `W-02`), not a full close |
 | 2026-10-08 | `docs/docs-site-link` | registry | no row changes (org row W-10 tracked in `.github`) | Linked the new hosted docs site (`kinlock-org.github.io`) from README |
 | 2026-10-08 | `docs/live-app-link` | registry | no row changes | Linked the live testnet app (`kinlock-app.vercel.app`, `M3-22`) from README; also set as the repo's GitHub "Website" field |
 | 2026-10-07 | `docs/scf-readiness-fixes` | registry | no row changes (org rows W-09/F-12 tracked in `.github`) | Part of an org-wide SCF open-source readiness audit (see `.github` `docs/scf-readiness.md`): filled the unfilled `Copyright [yyyy] [name of copyright owner]` placeholder in `LICENSE` and added `ISSUE_TEMPLATE/config.yml` (GitHub's community-profile check was reporting `issue_template: false` despite templates existing) |

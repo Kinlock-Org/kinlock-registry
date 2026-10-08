@@ -10,7 +10,8 @@
     "test": "vitest run",
     "validate": "tsx scripts/validate.ts",
     "hash": "tsx scripts/hash.ts",
-    "check-onchain": "tsx scripts/check-onchain.ts"
+    "check-onchain": "tsx scripts/check-onchain.ts",
+    "check-attester-readiness": "tsx scripts/check-attester-readiness.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
