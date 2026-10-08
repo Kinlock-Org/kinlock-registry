@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-08 (M1-26 attester script) |
+| **Last updated** | 2026-10-08 (wording: "verified payee" replaces "school or landlord") |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -524,6 +524,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
 | 2026-10-08 | `docs/readme-refresh` | registry | no row changes | README corrected: fixtures span three countries (KE, NG, PH), not two, and the real `payees/` and `attesters/` trees are still empty pending the `M0-17` supported-countries policy. Documents what CI enforces off-chain and the attester readiness script |
+| 2026-10-08 | `docs/verified-payee-wording` | registry | no row changes | Synced `AGENTS.md`/`docs/PRD.md`/`docs/ARCHITECTURE_ESSENTIALS.md` from `Kinlock-Org/.github` (`scripts/sync-docs.sh`): "a verified school or landlord" in the mission-statement-style sentences replaced with "a verified payee." Canonical source edited in `.github` PR #23. Left `fixtures/README.md`'s "not real schools or landlords" unchanged (factual fixture disclaimer, not pitch copy) |
 | 2026-10-08 | `docs/m1-26-attester-script` | registry | IN PROGRESS: M1-26 | Added `scripts/check-attester-readiness.ts` (`pnpm check-attester-readiness <payout-address>`): read-only checks for account existence, native XLM float, and an authorized USDC trustline with room, via direct ledger-entry reads (no new dependency). Verified against real testnet data, not just type-checked: ran it against the real testnet attester address and confirmed correct output (XLM float ✓, trustline ✗ as expected, since that address has none). Finalized `ATTESTER_CHECKLIST.md` to reference the script. Left `IN PROGRESS`, not `DONE`: the row's "runs end to end on testnet" criterion needs a real attester to complete it (`M0-06`), which hasn't happened. Progress toward issue #7 (seeded under `W-02`), not a full close |
 | 2026-10-08 | `docs/docs-site-link` | registry | no row changes (org row W-10 tracked in `.github`) | Linked the new hosted docs site (`kinlock-org.github.io`) from README |
 | 2026-10-08 | `docs/live-app-link` | registry | no row changes | Linked the live testnet app (`kinlock-app.vercel.app`, `M3-22`) from README; also set as the repo's GitHub "Website" field |
