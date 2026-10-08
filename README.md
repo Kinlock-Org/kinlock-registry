@@ -15,12 +15,14 @@ pnpm install
 pnpm validate               # registry + testnet fixtures
 pnpm hash <payee-file>      # payee_id and meta_hash for register_payee
 pnpm check-onchain          # fixtures vs the testnet contract
+pnpm check-attester-readiness <payout-address>   # trustline, XLM float, read-only
 ```
 
 ## Read first
 - `docs/ARCHITECTURE_ESSENTIALS.md` (short; read at the start of every task)
 - `AGENTS.md` (rules for humans and agents) and `CLAUDE.md`
 - `ROADMAP.md`: **every PR updates it**
+- [`ATTESTER_CHECKLIST.md`](ATTESTER_CHECKLIST.md): steps and the readiness script for onboarding a payee
 
 Docs in `docs/` are read-only copies synced from [Kinlock-Org/.github](https://github.com/Kinlock-Org/.github).
 
