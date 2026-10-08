@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-08 (docs site link) |
+| **Last updated** | 2026-10-08 (documentation-hub link) |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -523,6 +523,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-08 | `docs/link-doc-hub` | registry | no row changes (org row W-10 tracked in `.github`) | Linked `Kinlock-Org.github.io` (the org's documentation-issue hub) from README, with `area:registry` |
 | 2026-10-08 | `docs/docs-site-link` | registry | no row changes (org row W-10 tracked in `.github`) | Linked the new hosted docs site (`kinlock-org.github.io`) from README |
 | 2026-10-08 | `docs/live-app-link` | registry | no row changes | Linked the live testnet app (`kinlock-app.vercel.app`, `M3-22`) from README; also set as the repo's GitHub "Website" field |
 | 2026-10-07 | `docs/scf-readiness-fixes` | registry | no row changes (org rows W-09/F-12 tracked in `.github`) | Part of an org-wide SCF open-source readiness audit (see `.github` `docs/scf-readiness.md`): filled the unfilled `Copyright [yyyy] [name of copyright owner]` placeholder in `LICENSE` and added `ISSUE_TEMPLATE/config.yml` (GitHub's community-profile check was reporting `issue_template: false` despite templates existing) |
