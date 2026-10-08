@@ -7,7 +7,7 @@ Public payee and attester data, JSON schemas, and the hash and policy checks tha
 
 > **Status: active development, testnet only.** Schema validation, hashing, and on-chain match checks are implemented, with testnet fixture payees across two countries. See `ROADMAP.md`.
 
-**Try it live (testnet):** [kinlock-app.vercel.app](https://kinlock-app.vercel.app)
+**Try it live (testnet):** [kinlock-app.vercel.app](https://kinlock-app.vercel.app) · **Docs:** [kinlock-org.github.io](https://kinlock-org.github.io)
 
 ## Quick start
 ```
