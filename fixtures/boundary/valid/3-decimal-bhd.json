@@ -1,0 +1,11 @@
+{
+  "attester": "kinlock-testnet-attester-1",
+  "category": "School",
+  "city": "Manama",
+  "country": "BH",
+  "display_name": "Manama Science Institute (fixture)",
+  "local_currency": "BHD",
+  "payout_address": "GCLMHF7LAR34TSELDNEREYPTNE4K7MMESPS62WXE7ZDLPWIJUF3MC5QM",
+  "slug": "bh-test-manama-school",
+  "verified_at": "2026-10-17"
+}
