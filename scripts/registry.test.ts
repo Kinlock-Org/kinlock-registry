@@ -172,4 +172,70 @@ describe("validateRegistry", () => {
   it("reports a missing country list instead of crashing", () => {
     expect(errorsFor("empty")).toMatch(/supported-countries.json: missing/);
   });
+
+  it("aggregates multiple violations on a single record in one run", () => {
+    tree("t");
+    const multi = payee({
+      payout_address: "not-an-address",
+      local_currency: "ZZZ",
+      attester: "nobody",
+    });
+    write("t/payees/ke/ke-test-school.json", multi);
+
+    const res = validateRegistry([join(root, "t")]);
+    expect(res.findings).toHaveLength(3);
+    const ruleIds = res.findings.map((f) => f.ruleId);
+    expect(ruleIds).toEqual(["INVALID_CURRENCY_CODE", "SCHEMA_VIOLATION", "UNKNOWN_ATTESTER"]);
+
+    for (const f of res.findings) {
+      expect(f.file).toContain("ke-test-school.json");
+      expect(f.message.length).toBeGreaterThan(0);
+      expect(f.fixHint.length).toBeGreaterThan(0);
+    }
+
+    const schemaFinding = res.findings.find((f) => f.ruleId === "SCHEMA_VIOLATION");
+    expect(schemaFinding?.fixHint).toContain(
+      "payout_address must be a G- or C-address, 56 characters",
+    );
+    const currencyFinding = res.findings.find((f) => f.ruleId === "INVALID_CURRENCY_CODE");
+    expect(currencyFinding?.fixHint).toContain("ISO 4217");
+    const attesterFinding = res.findings.find((f) => f.ruleId === "UNKNOWN_ATTESTER");
+    expect(attesterFinding?.fixHint).toContain("attesters");
+
+    expect(res.errors).toHaveLength(3);
+    expect(res.errors[0]).toMatch(/not an ISO 4217 currency/);
+    expect(res.errors[1]).toMatch(/payout_address/);
+    expect(res.errors[2]).toMatch(/attester "nobody" has no file/);
+  });
+
+  it("reports unparseable JSON distinctly and stops per-file checks", () => {
+    tree("t");
+    write("t/payees/ke/ke-test-school.json", null, "{ not json }");
+    const res = validateRegistry([join(root, "t")]);
+    expect(res.findings).toHaveLength(1);
+    expect(res.findings[0]?.ruleId).toBe("INVALID_JSON");
+    expect(res.findings[0]?.message).toBe("not valid JSON");
+    expect(res.findings[0]?.fixHint).toContain("syntax");
+  });
+
+  it("sorts findings deterministically by file, then ruleId", () => {
+    tree("t");
+    write(
+      "t/payees/ke/a-school.json",
+      payee({ slug: "a-school", local_currency: "ZZZ", attester: "nobody" }),
+    );
+    write(
+      "t/payees/ke/b-school.json",
+      payee({ slug: "b-school", local_currency: "YYY", attester: "ghost" }),
+    );
+
+    const res = validateRegistry([join(root, "t")]);
+    expect(res.findings).toHaveLength(4);
+    expect(res.findings.map((f) => [f.file.split(/[\\/]/).pop(), f.ruleId])).toEqual([
+      ["a-school.json", "INVALID_CURRENCY_CODE"],
+      ["a-school.json", "UNKNOWN_ATTESTER"],
+      ["b-school.json", "INVALID_CURRENCY_CODE"],
+      ["b-school.json", "UNKNOWN_ATTESTER"],
+    ]);
+  });
 });
