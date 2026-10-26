@@ -1,6 +1,7 @@
 # kinlock-registry
 
 [![Validate](https://github.com/Kinlock-Org/kinlock-registry/actions/workflows/validate.yml/badge.svg)](https://github.com/Kinlock-Org/kinlock-registry/actions/workflows/validate.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Kinlock-Org/kinlock-registry/badge)](https://scorecard.dev/viewer/?uri=github.com/Kinlock-Org/kinlock-registry)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
 The public payee and attester registry: one JSON file per verified payee, the schemas that bind them, and the hash and policy checks that tie them to the on-chain contract. Data only — no application code.
