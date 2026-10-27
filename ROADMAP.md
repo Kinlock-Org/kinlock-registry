@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-26 (`M1-48` DONE; added `M1-51`: exempt Dependabot from `roadmap-check`) |
+| **Last updated** | 2026-10-27 (added `M1-53`: Scorecard Tier 2, CodeQL advanced setup) |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -129,7 +129,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 |---|---|---|---|---|---|---|---|---|
 | 0 Foundations | 19 | 16 | 1 | 2 | 0 | 0 | 0 | 84% |
 | 1 M0 Validate | 17 | 1 | 6 | 10 | 0 | 0 | 0 | 6% |
-| 2 Contract + registry | 44 | 27 | 3 | 14 | 0 | 0 | 0 | 61% |
+| 2 Contract + registry | 45 | 27 | 4 | 14 | 0 | 0 | 0 | 60% |
 | 3 SDK + indexer | 21 | 14 | 3 | 4 | 0 | 0 | 0 | 67% |
 | 4 App | 27 | 15 | 7 | 5 | 0 | 0 | 0 | 56% |
 | 5 Testnet pilot | 7 | 0 | 0 | 7 | 0 | 0 | 0 | 0% |
@@ -139,7 +139,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 | 9 Conditional ramp | 9 | 0 | 0 | 0 | 0 | 9 | 0 | n/a |
 | 10 Wave + community | 10 | 5 | 1 | 4 | 0 | 0 | 0 | 50% |
 | 11 Deferred parking lot | 16 | 0 | 0 | 0 | 0 | 16 | 0 | n/a |
-| **All** | **214** | **78** | **21** | **90** | **0** | **25** | **0** | **41%** |
+| **All** | **215** | **78** | **22** | **90** | **0** | **25** | **0** | **41%** |
 
 ---
 
@@ -248,6 +248,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 | M1-44 | Add OpenSSF Scorecard CI (`ossf/scorecard-action`): weekly supply-chain security posture scan published to the public Scorecard API/badge | registry | P2 | DONE | — | `.github/workflows/scorecard.yml` runs on push to `main` and weekly; results visible on the Security tab and via `https://api.scorecard.dev/projects/github.com/Kinlock-Org/kinlock-registry/badge`; verified on a real run — merged 2026-10-26, confirmed live at `api.scorecard.dev` (score 5.4, informing `M1-48`). ID chosen as `M1-44` (not `M1-42`/`M1-43`) to avoid colliding with `kinlock-contracts`' `M1-42` and this repo's own pending `M1-43` (PR #23, not yet merged) once copies are reconciled — Phase 2's `M1-` ID space is shared across `kinlock-contracts` and `kinlock-registry`. |
 | M1-48 | Scorecard remediation, Tier 1: pin every `uses:` in every workflow file to a commit SHA (`Pinned-Dependencies` was 3/10); add `.github/dependabot.yml` for `npm` + `github-actions` (`Dependency-Update-Tool` was 0/10); enable CodeQL default setup for `actions`+`javascript-typescript` via the Code Scanning API (`SAST` was 0/10). ID chosen as `M1-48` to stay clear of this repo's own pending `M1-43` (PR #23) and `kinlock-contracts`' pending `M1-46`/`M1-47` in the shared Phase-2 `M1-` id space | registry | P2 | DONE | M1-44 | Next scheduled Scorecard run shows `Pinned-Dependencies` at 10/10 and `Dependency-Update-Tool`/`SAST` both non-zero; verified against a real re-run, not assumed — merged; Dependabot and CodeQL both confirmed working for real |
 | M1-51 | `roadmap-check.yml` exempts Dependabot (`if: github.actor != 'dependabot[bot]'`): Dependabot has no way to know AGENTS.md §12's ROADMAP.md convention and can't be configured to edit it, so every Dependabot PR opened after `M1-48` was failing this required check for a reason unrelated to the dependency bump itself. ID `M1-51` to stay past `kinlock-contracts`' `M1-50` in the shared Phase-2 `M1-` id space | registry | P1 | DONE | M1-48 | `roadmap-check` reports success (skipped) on a real Dependabot PR; confirmed via GitHub's own status-checks docs that a job skipped by a job-level `if` reports "Success" and does not block a required check, not assumed |
+| M1-53 | Scorecard remediation, Tier 2: switch CodeQL from GitHub's default setup (`weekly` schedule only — not configurable via the Code Scanning API, confirmed against GitHub's own REST docs) to an advanced `codeql.yml` running on every push and PR, matching `kinlock-contracts`'s pattern; group `github/codeql-action*` in `dependabot.yml` so `init`/`analyze` can't drift apart the way they did in `kinlock-contracts` PR #47. ID `M1-53` to stay past `kinlock-contracts`' `M1-52` in the shared Phase-2 `M1-` id space | registry | P2 | IN PROGRESS | M1-48 | Next scheduled Scorecard run shows `SAST` crediting commit coverage; not yet verified against a real re-run (pending merge) |
 
 ### 6.2 `kinlock-registry`
 
@@ -538,6 +539,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-27 | `ci/codeql-advanced-setup` | registry | M1-53 IN PROGRESS | Investigated the live Scorecard setup at the owner's request to find what's self-fixable. CodeQL's default setup only runs `weekly`, not configurable to run on every commit via the Code Scanning API (confirmed against GitHub's own REST docs). Added an advanced `codeql.yml` (push/PR/weekly schedule, matching `kinlock-contracts`), disabled default setup, and grouped `github/codeql-action*` in `dependabot.yml` to prevent the init/analyze version-drift bug found in `kinlock-contracts` PR #47. Left `IN PROGRESS` pending a real post-merge Scorecard re-run. |
 | 2026-10-26 | `ci/exempt-dependabot-roadmap-check` | registry | M1-48 DONE, M1-51 DONE | `M1-48` merged; Dependabot and CodeQL both confirmed working for real. All Dependabot PRs opened since were failing `roadmap-check` for the same reason as the other repos. Added `if: github.actor != 'dependabot[bot]'` to the job. Verified against GitHub's own status-checks docs that a job skipped this way reports "Success" and does not block a required check. |
 | 2026-10-26 | `ci/pin-action-shas` | registry | M1-44 DONE, M1-48 IN PROGRESS | Confirmed `M1-44` live: fetched `api.scorecard.dev/projects/github.com/Kinlock-Org/kinlock-registry`, score 5.4/10 — marked `DONE`. Started Tier 1 remediation (`M1-48`): pinned `actions/checkout@v4`, `pnpm/action-setup@v4`, `actions/setup-node@v4` to commit SHAs across `roadmap-check.yml`, `onchain-match.yml`, `docs-in-sync.yml`, `validate.yml`; added `.github/dependabot.yml`; enabled CodeQL default setup for `actions`+`javascript-typescript` via the Code Scanning API. Left `IN PROGRESS` pending a real Scorecard re-run. |
 | 2026-10-26 | `ci/scorecard` | registry | M1-44 IN PROGRESS | Added `.github/workflows/scorecard.yml` (OpenSSF Scorecard), copied from the current canonical `ossf/scorecard/.github/workflows/scorecard-analysis.yml`, pinned to the same commit SHAs upstream uses. `push`-to-`main` and weekly schedule only (`pull_request` is documented upstream as experimental). `publish_results: true` since this repo is public. Row ID `M1-44` chosen deliberately (see row for why). **Update 2026-10-26:** added the Scorecard badge to `README.md`'s badge row, per request. Left `IN PROGRESS` pending the first real run confirming the job executes and publishes successfully. |
