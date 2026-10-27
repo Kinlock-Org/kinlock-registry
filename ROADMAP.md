@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-26 (`M1-48` DONE; added `M1-51`: exempt Dependabot from `roadmap-check`) |
+| **Last updated** | 2026-10-27 (`M1-28` DONE: `CODEOWNERS` for attesters verified live) |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -129,7 +129,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 |---|---|---|---|---|---|---|---|---|
 | 0 Foundations | 19 | 16 | 1 | 2 | 0 | 0 | 0 | 84% |
 | 1 M0 Validate | 17 | 1 | 6 | 10 | 0 | 0 | 0 | 6% |
-| 2 Contract + registry | 44 | 27 | 3 | 14 | 0 | 0 | 0 | 61% |
+| 2 Contract + registry | 44 | 28 | 3 | 13 | 0 | 0 | 0 | 64% |
 | 3 SDK + indexer | 21 | 14 | 3 | 4 | 0 | 0 | 0 | 67% |
 | 4 App | 27 | 15 | 7 | 5 | 0 | 0 | 0 | 56% |
 | 5 Testnet pilot | 7 | 0 | 0 | 7 | 0 | 0 | 0 | 0% |
@@ -139,7 +139,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 | 9 Conditional ramp | 9 | 0 | 0 | 0 | 0 | 9 | 0 | n/a |
 | 10 Wave + community | 10 | 5 | 1 | 4 | 0 | 0 | 0 | 50% |
 | 11 Deferred parking lot | 16 | 0 | 0 | 0 | 0 | 16 | 0 | n/a |
-| **All** | **214** | **78** | **21** | **90** | **0** | **25** | **0** | **41%** |
+| **All** | **214** | **79** | **21** | **89** | **0** | **25** | **0** | **42%** |
 
 ---
 
@@ -257,7 +257,7 @@ Readiness % = `DONE ÷ (all rows − DEFERRED − DROPPED)`. Conditional rows (P
 | M1-25 | `check-onchain` script and `onchain-match` workflow | registry | P0 | DONE | M1-19, M1-24 | Detects hash mismatch against testnet |
 | M1-26 | Write `ATTESTER_CHECKLIST.md` and a script for trustline, XLM float, test release | registry | P0 | IN PROGRESS | M0-06 | Checklist runs end to end on testnet |
 | M1-27 | Add testnet fixture payees | registry | P0 | DONE | M1-24 | At least 3 examples across at least 2 countries, no personal data |
-| M1-28 | `CODEOWNERS` for attesters | registry | P0 | TODO | F-12 | Attester review enforced |
+| M1-28 | `CODEOWNERS` for attesters | registry | P0 | DONE | F-12 | Attester review enforced. `.github/CODEOWNERS` already existed with correct team handles and path scoping, but was marked "illustrative... replace as needed" -- verified rather than assumed: all three teams (`maintainers`, `contract-reviewers`, `attesters`) exist (`gh api orgs/Kinlock-Org/teams`), and `require_code_owner_review: true` is live on this repo's branch ruleset (`gh api .../rulesets`). Removed the stale disclaimer |
 | M1-29 | Registry: add `country` (ISO 3166-1), `local_currency` (ISO 4217), per-country directories, `supported-countries.json`, `attesters/<handle>.json`, and CI rules (supported country, attester scope, directory match, unique slug) | registry | P0 | DONE | M0-16, M1-24 | Each rule has a failing-case test; fixtures cover at least 2 countries |
 
 ---
@@ -538,6 +538,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-27 | `fix/m1-28-codeowners-attesters` | registry | M1-28 DONE | `.github/CODEOWNERS` already existed (correct team handles, correct path scoping matching AGENTS.md §8.4: attesters own `/payees/**`, maintainers own `/attesters/**` and `/supported-countries.json` since attesters shouldn't self-approve their own scope), but its header called it "illustrative... replace handles as needed," so the row stayed `TODO`. Verified rather than assumed: `gh api orgs/Kinlock-Org/teams` confirms all three teams exist; `gh api repos/Kinlock-Org/kinlock-registry/rulesets/<id>` confirms `require_code_owner_review: true` is live on the branch ruleset. Removed the stale disclaimer, replaced with a dated verification note. `pnpm lint`/`typecheck`/`test` (16/16)/`validate` all green. |
 | 2026-10-26 | `ci/exempt-dependabot-roadmap-check` | registry | M1-48 DONE, M1-51 DONE | `M1-48` merged; Dependabot and CodeQL both confirmed working for real. All Dependabot PRs opened since were failing `roadmap-check` for the same reason as the other repos. Added `if: github.actor != 'dependabot[bot]'` to the job. Verified against GitHub's own status-checks docs that a job skipped this way reports "Success" and does not block a required check. |
 | 2026-10-26 | `ci/pin-action-shas` | registry | M1-44 DONE, M1-48 IN PROGRESS | Confirmed `M1-44` live: fetched `api.scorecard.dev/projects/github.com/Kinlock-Org/kinlock-registry`, score 5.4/10 — marked `DONE`. Started Tier 1 remediation (`M1-48`): pinned `actions/checkout@v4`, `pnpm/action-setup@v4`, `actions/setup-node@v4` to commit SHAs across `roadmap-check.yml`, `onchain-match.yml`, `docs-in-sync.yml`, `validate.yml`; added `.github/dependabot.yml`; enabled CodeQL default setup for `actions`+`javascript-typescript` via the Code Scanning API. Left `IN PROGRESS` pending a real Scorecard re-run. |
 | 2026-10-26 | `ci/scorecard` | registry | M1-44 IN PROGRESS | Added `.github/workflows/scorecard.yml` (OpenSSF Scorecard), copied from the current canonical `ossf/scorecard/.github/workflows/scorecard-analysis.yml`, pinned to the same commit SHAs upstream uses. `push`-to-`main` and weekly schedule only (`pull_request` is documented upstream as experimental). `publish_results: true` since this repo is public. Row ID `M1-44` chosen deliberately (see row for why). **Update 2026-10-26:** added the Scorecard badge to `README.md`'s badge row, per request. Left `IN PROGRESS` pending the first real run confirming the job executes and publishes successfully. |
