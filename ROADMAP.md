@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-27 (added `M1-53`: Scorecard Tier 2, CodeQL advanced setup) |
+| **Last updated** | 2026-10-28 (no row changes: added a 4th testnet fixture for `kinlock-app`'s M3-19 e2e CI) |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -539,6 +539,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-28 | `feat/e2e-fixture-payee` | registry | no row changes | Added a 4th testnet fixture, `fixtures/payees/ng/ng-kinlock-e2e-test.json` and its attester `fixtures/attesters/kinlock-e2e-attester.json`, for `kinlock-app`'s M3-19 Playwright happy-path CI. The 3 existing fixtures (`M1-27`, already `DONE`) are tied to the standing testnet contract in `fixtures/network.json`; this one is registered on a separate, dedicated e2e-only testnet contract instead (`kinlock-app`'s roadmap has the full setup), so it's additive, not a replacement, and doesn't touch `M1-27`'s own done-when. `payee_id`/`meta_hash` computed with `pnpm hash` (never by hand), `pnpm validate` passes (4 payee files, 0 problems). |
 | 2026-10-27 | Dependabot PR #27 (`dependabot/github_actions/pnpm/action-setup-b906affcce14559ad1aafd4ab0e942779e9f58b1`) | registry | no row changes | Updated this branch with `main` (GitHub's branch-update API, no conflicts) so `roadmap-check` runs against current `main` instead of a stale pre-fix snapshot. That update's own commit is attributed to a maintainer account, not Dependabot, so the job's `dependabot[bot]` exemption correctly does not apply to it — this entry satisfies the same check for real. |
 | 2026-10-27 | `ci/codeql-advanced-setup` | registry | M1-53 IN PROGRESS | Investigated the live Scorecard setup at the owner's request to find what's self-fixable. CodeQL's default setup only runs `weekly`, not configurable to run on every commit via the Code Scanning API (confirmed against GitHub's own REST docs). Added an advanced `codeql.yml` (push/PR/weekly schedule, matching `kinlock-contracts`), disabled default setup, and grouped `github/codeql-action*` in `dependabot.yml` to prevent the init/analyze version-drift bug found in `kinlock-contracts` PR #47. Left `IN PROGRESS` pending a real post-merge Scorecard re-run. |
 | 2026-10-26 | `ci/exempt-dependabot-roadmap-check` | registry | M1-48 DONE, M1-51 DONE | `M1-48` merged; Dependabot and CodeQL both confirmed working for real. All Dependabot PRs opened since were failing `roadmap-check` for the same reason as the other repos. Added `if: github.actor != 'dependabot[bot]'` to the job. Verified against GitHub's own status-checks docs that a job skipped this way reports "Success" and does not block a required check. |
