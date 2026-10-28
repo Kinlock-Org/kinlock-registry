@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-10-27 (added `M1-53`: Scorecard Tier 2, CodeQL advanced setup) |
+| **Last updated** | 2026-10-28 (`fix/pin-fast-uri-override`: Scorecard Vulnerabilities fix, `fast-uri` 4 advisories → 0; no row status change) |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -539,6 +539,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-10-28 | `fix/pin-fast-uri-override` | registry | no row changes | Scorecard's Vulnerabilities check found 4 real advisories (`GHSA-333x-w4r6-6crp`, `GHSA-w74x-v6f9-j3xg`, `GHSA-wjr9-j795-jxcr`, `GHSA-xhq7-xmqj-769h`), all in `fast-uri` via `ajv`/`ajv-formats` (dev dependencies, JSON Schema validation for registry CI). `ajv@8.20.0` is already the latest release and still pulls the vulnerable `fast-uri@3.1.8` — upstream hasn't bumped it yet — so added a `pnpm-workspace.yaml` (pnpm 10 moved `overrides` out of `package.json`'s `pnpm` field) with `fast-uri@<3.1.9: >=3.1.9`. Verified: `pnpm why fast-uri` confirms the override resolved it to `4.2.3` everywhere; `pnpm audit` now reports "No known vulnerabilities found"; `pnpm test` 16/16 passing (schema validation unaffected). |
 | 2026-10-27 | Dependabot PR #27 (`dependabot/github_actions/pnpm/action-setup-b906affcce14559ad1aafd4ab0e942779e9f58b1`) | registry | no row changes | Updated this branch with `main` (GitHub's branch-update API, no conflicts) so `roadmap-check` runs against current `main` instead of a stale pre-fix snapshot. That update's own commit is attributed to a maintainer account, not Dependabot, so the job's `dependabot[bot]` exemption correctly does not apply to it — this entry satisfies the same check for real. |
 | 2026-10-27 | `ci/codeql-advanced-setup` | registry | M1-53 IN PROGRESS | Investigated the live Scorecard setup at the owner's request to find what's self-fixable. CodeQL's default setup only runs `weekly`, not configurable to run on every commit via the Code Scanning API (confirmed against GitHub's own REST docs). Added an advanced `codeql.yml` (push/PR/weekly schedule, matching `kinlock-contracts`), disabled default setup, and grouped `github/codeql-action*` in `dependabot.yml` to prevent the init/analyze version-drift bug found in `kinlock-contracts` PR #47. Left `IN PROGRESS` pending a real post-merge Scorecard re-run. |
 | 2026-10-26 | `ci/exempt-dependabot-roadmap-check` | registry | M1-48 DONE, M1-51 DONE | `M1-48` merged; Dependabot and CodeQL both confirmed working for real. All Dependabot PRs opened since were failing `roadmap-check` for the same reason as the other repos. Added `if: github.actor != 'dependabot[bot]'` to the job. Verified against GitHub's own status-checks docs that a job skipped this way reports "Success" and does not block a required check. |
