@@ -1,7 +1,7 @@
 /** `pnpm validate`: checks the real registry and the testnet fixtures. Exit 1 on any problem. */
-import { validateRegistry } from "./registry.js";
+import { formatFinding, validateRegistry } from "./registry.js";
 
-const { payees, errors } = validateRegistry([".", "fixtures"]);
-for (const e of errors) console.error(`✗ ${e}`);
-console.log(`${payees.length} payee file(s) checked, ${errors.length} problem(s)`);
-process.exit(errors.length ? 1 : 0);
+const { payees, findings } = validateRegistry([".", "fixtures"]);
+for (const f of findings) console.error(formatFinding(f));
+console.log(`${payees.length} payee file(s) checked, ${findings.length} problem(s)`);
+process.exit(findings.length ? 1 : 0);

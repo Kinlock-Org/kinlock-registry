@@ -41,13 +41,23 @@ pnpm check-attester-readiness <payout-address> # read-only: account, XLM float, 
 
 ## What CI enforces
 
-`validate.yml` runs lint, typecheck, tests, and `pnpm validate` on every PR and on `main`. Beyond schema validity it fails a payee whose:
+`validate.yml` runs lint, typecheck, tests, and `pnpm validate` on every PR and on `main`. Validation checks report all findings deterministically in one run with stable rule IDs and actionable fix hints:
 
-- `country` is not in `supported-countries.json`;
-- vouching `attester` has no file, or isn't authorized for that country;
-- file lives in a directory that doesn't match its `country`;
-- `slug` doesn't match its filename or isn't globally unique;
-- `local_currency` isn't a valid ISO 4217 code, or `country` isn't a real ISO 3166-1 alpha-2 code.
+| Rule ID | What it enforces | Fix hint |
+|---|---|---|
+| `FILE_MISSING` | Required file exists | Create file at the required path |
+| `INVALID_JSON` | File contains valid JSON | Fix JSON syntax errors |
+| `CANONICAL_FORMAT` | Sorted keys, 2 spaces indentation, trailing newline | Format with sorted keys, 2 spaces, and final newline |
+| `SCHEMA_VIOLATION` | Conforms to JSON Schema (`payee`, `attester`, `supported-countries`) | Adhere to schema; `payout_address` must be 56-char G- or C-address; no unlisted properties |
+| `HANDLE_FILENAME_MISMATCH` | Attester handle matches filename (`<handle>.json`) | Rename file or update handle property to match |
+| `SLUG_FILENAME_MISMATCH` | Payee slug matches filename (`<slug>.json`) | Rename file or update slug property to match |
+| `COUNTRY_DIR_MISMATCH` | Payee lives in `payees/<country>/` (lowercase) | Move file to correct country directory |
+| `INVALID_COUNTRY_CODE` | Code is a valid ISO 3166-1 alpha-2 uppercase code | Use official ISO 3166-1 two-letter code |
+| `UNSUPPORTED_COUNTRY` | Country is listed in `supported-countries.json` | Request country addition with counsel sign-off |
+| `INVALID_CURRENCY_CODE` | Currency is a valid ISO 4217 uppercase code | Use official ISO 4217 three-letter code |
+| `UNKNOWN_ATTESTER` | Attester has a record in `attesters/<handle>.json` | Add attester record or correct handle spelling |
+| `ATTESTER_UNAUTHORIZED` | Attester is authorized to vouch for this country | Add country to attester's authorized countries list |
+| `DUPLICATE_SLUG` | Slug is globally unique across all registry trees | Choose a unique slug (determines on-chain `payee_id`) |
 
 `onchain-match.yml` runs nightly (and on dispatch, not on PRs) and compares each fixture's on-chain record against its file: `meta_hash`, payout address, category, vouching attester, Active status.
 
