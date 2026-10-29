@@ -21,6 +21,7 @@ The public payee and attester registry: one JSON file per verified payee, the sc
 | `schemas/` | JSON Schemas for payee, attester, and the country list |
 | `scripts/` | Validation, hashing, on-chain match, attester readiness |
 | `ATTESTER_CHECKLIST.md` | How an attester takes a payee from verified to operational |
+| `docs/ATTESTER_GUIDE.md` | Step-by-step attester walkthrough: readiness, records, `meta_hash`, PR review |
 
 A payee record carries **public fields only**: `slug`, `display_name`, `category` (`School` | `Rent`), `country` (ISO 3166-1), `local_currency` (ISO 4217), `city`, `payout_address`, `attester`, `verified_at`. No personal data, no identity documents, no phone numbers, no evidence — identity evidence stays with the attester, in none of Kinlock's systems.
 
@@ -55,7 +56,7 @@ These are **off-chain policy**, not contract rules. The contract has no notion o
 
 ## Adding a payee
 
-You don't, on your own initiative. A named attester who has verified the institution off-chain and completed the checklist opens the PR; `CODEOWNERS` routes review. Follow `ATTESTER_CHECKLIST.md`.
+You don't, on your own initiative. A named attester who has verified the institution off-chain and completed the checklist opens the PR; `CODEOWNERS` routes review. Follow `ATTESTER_CHECKLIST.md` and the step-by-step walkthrough in [`docs/ATTESTER_GUIDE.md`](docs/ATTESTER_GUIDE.md).
 
 ## Read first
 
@@ -63,6 +64,7 @@ You don't, on your own initiative. A named attester who has verified the institu
 - `AGENTS.md` (rules for humans and agents) and `CLAUDE.md`
 - `ROADMAP.md`: **every PR updates it**
 - [`ATTESTER_CHECKLIST.md`](ATTESTER_CHECKLIST.md): onboarding steps and the readiness script
+- [`docs/ATTESTER_GUIDE.md`](docs/ATTESTER_GUIDE.md): step-by-step guide from account readiness to `meta_hash` to review
 
 Docs in `docs/` are read-only copies synced from [Kinlock-Org/.github](https://github.com/Kinlock-Org/.github).
 
