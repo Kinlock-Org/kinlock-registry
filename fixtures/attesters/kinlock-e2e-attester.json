@@ -1,0 +1,8 @@
+{
+  "address": "GAWRJNMD55FY5WKA232VV4JWXJ63S3BEGDQMYNLPAR2ELFQWDRC3CLQH",
+  "countries": [
+    "NG"
+  ],
+  "display_name": "Kinlock e2e CI attester (fixture)",
+  "handle": "kinlock-e2e-attester"
+}
