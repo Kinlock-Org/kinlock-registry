@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      # codeql.yml's init/analyze steps must stay on the same codeql-action version
+      # (CodeQL refuses to run otherwise). Bumping them separately broke CI in
+      # kinlock-contracts (PR #47); group them here so that can't happen in this repo.
+      codeql-action:
+        patterns:
+          - "github/codeql-action*"
