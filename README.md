@@ -1,6 +1,7 @@
 # kinlock-registry
 
 [![Validate](https://github.com/Kinlock-Org/kinlock-registry/actions/workflows/validate.yml/badge.svg)](https://github.com/Kinlock-Org/kinlock-registry/actions/workflows/validate.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Kinlock-Org/kinlock-registry/badge)](https://scorecard.dev/viewer/?uri=github.com/Kinlock-Org/kinlock-registry)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
 The public payee and attester registry: one JSON file per verified payee, the schemas that bind them, and the hash and policy checks that tie them to the on-chain contract. Data only — no application code.
@@ -32,10 +33,10 @@ pnpm validate                                  # both trees: real registry + fix
 pnpm lint && pnpm typecheck && pnpm test       # biome, tsc, vitest
 pnpm hash <payee-file>                         # payee_id and meta_hash, for register_payee
 pnpm check-onchain                             # fixtures vs the testnet contract
-pnpm check-attester-readiness <payout-address> # read-only: account, XLM float, USDC trustline
+pnpm check-attester-readiness <payout-address> # read-only: account, XLM float, asset trustline
 ```
 
-`check-attester-readiness` is the scripted half of the checklist. It only reads ledger entries, and takes `--min-xlm` (default 2) plus `--token`/`--issuer` for a non-default asset. It never signs or submits anything.
+`check-attester-readiness` is the scripted half of the checklist. It only reads ledger entries, and takes `--min-xlm` (default `2`, at most 7 decimals) plus `--token <asset code>` and `--issuer <G-address>` for a non-default asset — a trustline is keyed on that code+issuer pair, and the default is testnet USDC. `--token` is an asset code, not a contract address. It never signs or submits anything.
 
 `meta_hash` is SHA-256 over sorted-key, compact, canonical UTF-8 JSON, and `payee_id` is SHA-256 of the slug. **Never compute either by hand** — use `pnpm hash`.
 
