@@ -14,7 +14,7 @@
     "check-attester-readiness": "tsx scripts/check-attester-readiness.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.15",
+    "@biomejs/biome": "2.6.3",
     "@types/node": "26.6.5",
     "ajv": "8.20.0",
     "ajv-formats": "3.0.1",
