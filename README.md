@@ -32,10 +32,10 @@ pnpm validate                                  # both trees: real registry + fix
 pnpm lint && pnpm typecheck && pnpm test       # biome, tsc, vitest
 pnpm hash <payee-file>                         # payee_id and meta_hash, for register_payee
 pnpm check-onchain                             # fixtures vs the testnet contract
-pnpm check-attester-readiness <payout-address> # read-only: account, XLM float, USDC trustline
+pnpm check-attester-readiness <payout-address> # read-only: account, XLM float, asset trustline
 ```
 
-`check-attester-readiness` is the scripted half of the checklist. It only reads ledger entries, and takes `--min-xlm` (default 2) plus `--token`/`--issuer` for a non-default asset. It never signs or submits anything.
+`check-attester-readiness` is the scripted half of the checklist. It only reads ledger entries, and takes `--min-xlm` (default `2`, at most 7 decimals) plus `--token <asset code>` and `--issuer <G-address>` for a non-default asset — a trustline is keyed on that code+issuer pair, and the default is testnet USDC. `--token` is an asset code, not a contract address. It never signs or submits anything.
 
 `meta_hash` is SHA-256 over sorted-key, compact, canonical UTF-8 JSON, and `payee_id` is SHA-256 of the slug. **Never compute either by hand** — use `pnpm hash`.
 
