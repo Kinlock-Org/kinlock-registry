@@ -31,14 +31,14 @@ A payee record carries **public fields only**: `slug`, `display_name`, `category
 pnpm install
 pnpm validate                                  # both trees: real registry + fixtures
 pnpm lint && pnpm typecheck && pnpm test       # biome, tsc, vitest
-pnpm hash <payee-file>                         # payee_id and meta_hash, for register_payee
+pnpm hash <payee-file>                         # payee_id and meta_hash for register_payee; refuses a record CI would reject
 pnpm check-onchain                             # fixtures vs the testnet contract
 pnpm check-attester-readiness <payout-address> # read-only: account, XLM float, asset trustline
 ```
 
 `check-attester-readiness` is the scripted half of the checklist. It only reads ledger entries, and takes `--min-xlm` (default `2`, at most 7 decimals) plus `--token <asset code>` and `--issuer <G-address>` for a non-default asset — a trustline is keyed on that code+issuer pair, and the default is testnet USDC. `--token` is an asset code, not a contract address. It never signs or submits anything.
 
-`meta_hash` is SHA-256 over sorted-key, compact, canonical UTF-8 JSON, and `payee_id` is SHA-256 of the slug. **Never compute either by hand** — use `pnpm hash`.
+`meta_hash` is SHA-256 over sorted-key, compact, canonical UTF-8 JSON, and `payee_id` is SHA-256 of the slug. **Never compute either by hand** — use `pnpm hash`. It runs the same tree validation CI runs and refuses to print anything for a record CI would reject: a `meta_hash` registered from such a record stops matching every file in the repo as soon as the record is fixed, and that mismatch is only visible later, on-chain.
 
 ## What CI enforces
 
