@@ -1,0 +1,11 @@
+{
+  "attester": "kinlock-testnet-attester-1",
+  "category": "School",
+  "city": "Manila",
+  "country": "PH",
+  "display_name": "Boundary Test School with Duplicate Slug from KE (Must Fail)",
+  "local_currency": "PHP",
+  "payout_address": "GBXKOYQ4ZSLG42J7U4O4W3Y3X56Z6W6G5V74L35L33KLLH3C7B5D2WSX",
+  "slug": "ke-kinlock-test-school",
+  "verified_at": "2026-10-17"
+}
