@@ -1,0 +1,11 @@
+{
+  "attester": "kinlock-e2e-attester",
+  "category": "School",
+  "city": "Lagos",
+  "country": "NG",
+  "display_name": "Kinlock E2E Test School (fixture)",
+  "local_currency": "NGN",
+  "payout_address": "GASZGX3F3D3ZKXDTGRQXKJ3FLZ72NG7JGK4HAHATSN56DOFOMCCCGXC2",
+  "slug": "ng-kinlock-e2e-test",
+  "verified_at": "2026-10-28"
+}
