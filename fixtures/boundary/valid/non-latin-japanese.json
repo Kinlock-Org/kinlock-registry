@@ -1,0 +1,11 @@
+{
+  "attester": "kinlock-testnet-attester-1",
+  "category": "School",
+  "city": "Tokyo",
+  "country": "JP",
+  "display_name": "東京国際アカデミー (Tokyo International Academy Fixture)",
+  "local_currency": "JPY",
+  "payout_address": "GCLMHF7LAR34TSELDNEREYPTNE4K7MMESPS62WXE7ZDLPWIJUF3MC5QM",
+  "slug": "jp-test-tokyo-academy",
+  "verified_at": "2026-10-17"
+}

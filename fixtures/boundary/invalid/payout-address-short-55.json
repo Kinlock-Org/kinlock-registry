@@ -1,0 +1,11 @@
+{
+  "attester": "kinlock-testnet-attester-1",
+  "category": "School",
+  "city": "Nairobi",
+  "country": "KE",
+  "display_name": "Boundary Test School with Fifty-Five Character Address (Must Fail)",
+  "local_currency": "KES",
+  "payout_address": "GCLMHF7LAR34TSELDNEREYPTNE4K7MMESPS62WXE7ZDLPWIJUF3MC5Q",
+  "slug": "ke-test-short-address",
+  "verified_at": "2026-10-17"
+}

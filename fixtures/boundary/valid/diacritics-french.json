@@ -1,0 +1,11 @@
+{
+  "attester": "kinlock-testnet-attester-1",
+  "category": "School",
+  "city": "Paris",
+  "country": "FR",
+  "display_name": "Lycée Français & Collège de Saint-Louis à Châteauneuf",
+  "local_currency": "EUR",
+  "payout_address": "GCLMHF7LAR34TSELDNEREYPTNE4K7MMESPS62WXE7ZDLPWIJUF3MC5QM",
+  "slug": "fr-test-lycee-st-louis",
+  "verified_at": "2026-10-17"
+}
