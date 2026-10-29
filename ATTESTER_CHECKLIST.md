@@ -7,6 +7,8 @@ working script.
 
 Complete every step before opening a payee PR. Keep identity evidence yourself; never put it in this repo or any Kinlock system.
 
+For a comprehensive step-by-step walkthrough from account readiness to `meta_hash` calculation, see the [Attester Guide](docs/ATTESTER_GUIDE.md).
+
 ## Eligibility
 - [ ] The payee's country is listed in `supported-countries.json`.
 - [ ] You are authorized for that country in `attesters/<your-handle>.json`.
