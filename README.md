@@ -58,6 +58,25 @@ These are **off-chain policy**, not contract rules. The contract has no notion o
 
 You don't, on your own initiative. A named attester who has verified the institution off-chain and completed the checklist opens the PR; `CODEOWNERS` routes review. Follow `ATTESTER_CHECKLIST.md` and the step-by-step walkthrough in [`docs/ATTESTER_GUIDE.md`](docs/ATTESTER_GUIDE.md).
 
+## Maintainers
+
+| Name | Role | GitHub | Contact |
+|---|---|---|---|
+| Adenike Ajala | Core Maintainer (Smart Contracts & Protocol) | [@abrcrmb](https://github.com/abrcrmb) | [Email](mailto:adenikeajala2018@gmail.com) |
+| Ayobami Yazar | Core Maintainer (Full-Stack & Integrations) | [@YazarAyobami](https://github.com/YazarAyobami) | [Email](mailto:Yazarayobami76@gmail.com) |
+
+## Community & Discussions
+
+- **Discussions:** [GitHub Discussions](https://github.com/Kinlock-Org/kinlock-registry/discussions)
+- **Documentation Portal:** [kinlock-org.github.io](https://kinlock-org.github.io)
+- **Report Security Vulnerabilities:** Follow [`SECURITY.md`](SECURITY.md)
+
+## Contributors
+
+Thanks to everyone who has contributed to Kinlock!
+
+[![Contributors](https://contrib.rocks/image?repo=Kinlock-Org/kinlock-registry)](https://github.com/Kinlock-Org/kinlock-registry/graphs/contributors)
+
 ## Read first
 
 - `docs/ARCHITECTURE_ESSENTIALS.md` (short; read at the start of every task)
