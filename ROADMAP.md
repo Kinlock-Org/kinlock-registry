@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-11-01 (fix/scorecard-hardening: M1-53 DONE) |
+| **Last updated** | 2026-11-02 (feat/test-unicode-payee-schema-46: closes #46) |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -544,6 +544,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-11-02 | `feat/test-unicode-payee-schema-46` | registry | no row changes (M1-25) | Closes #46. Expand payee schema validation test suite in `test/schema.test.ts` covering edge-case Unicode names and accents (French, Spanish, Portuguese, Vietnamese, Arabic, CJK, Cyrillic, Greek, Devanagari) in `display_name` and `city`, while verifying strict ASCII alphanumeric slug validation and hash/ID stability. |
 | 2026-11-01 | `fix/scorecard-hardening` | registry | M1-53 DONE | OpenSSF Scorecard hardening: pinned malware-scan.yml actions to commit SHAs and semgrep to 1.136.0 (Pinned-Dependencies); enriched SECURITY.md with vulnerability reporting instructions and response/disclosure timelines. All 48 tests and schema validations pass. |
 | 2026-11-01 | `docs/drips-wave-application` | registry | no row changes | Added dedicated DRIPS_WAVE.md application and review summary document for the Drips Wave Stellar program review panel, detailing payee metadata schema architecture, on-chain match CI, testing hygiene, and maintainers. Added Maintainers table, Community & Discussions, and Contributors badge to README.md. |
 | 2026-11-01 | `docs/sync-canonical-dual-mode` | kinlock-registry | no row changes | Regenerated this repo's read-only doc copies with the canonical script (`.github/scripts/sync-docs.sh`, write mode) after canonical `.github`#43 landed ADR-0031 (universal dual-mode locks). |
