@@ -11,7 +11,8 @@
     "validate": "tsx scripts/validate.ts",
     "hash": "tsx scripts/hash.ts",
     "check-onchain": "tsx scripts/check-onchain.ts",
-    "check-attester-readiness": "tsx scripts/check-attester-readiness.ts"
+    "check-attester-readiness": "tsx scripts/check-attester-readiness.ts",
+    "new-payee": "tsx scripts/new-payee.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
