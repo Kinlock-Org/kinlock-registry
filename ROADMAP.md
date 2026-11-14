@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Last updated** | 2026-11-01 (fix/scorecard-hardening: M1-53 DONE) |
+| **Last updated** | 2026-11-14 (docs/attester-key-rotation-48: M1-26 IN PROGRESS) |
 | **Docs baseline** | v0.3, worldwide scope (`PRD.md`, `ARCHITECTURE.md`, `ARCHITECTURE_ESSENTIALS.md`, `AGENTS.md`, `CLAUDE.md`, `project_structure.md`) |
 | **Current phase** | Phase 0 (Foundations) → starting Phase 1 (M0 Validate) |
 | **Readiness** | See [§3](#3-progress-snapshot) |
@@ -544,6 +544,7 @@ Newest first. One entry per PR. Required for every contribution (see §2).
 
 | Date | PR / ref | Repo | Rows touched | Summary |
 |---|---|---|---|---|
+| 2026-11-14 | `docs/attester-key-rotation-48` | registry | M1-26 IN PROGRESS (M1-28 referenced) | Closes #48: documented step-by-step attester Stellar signing key rotation procedure and verification commands (`pnpm check-attester-readiness`, `pnpm validate`, `pnpm check-onchain`) in `ATTESTER_CHECKLIST.md`. |
 | 2026-11-01 | `fix/scorecard-hardening` | registry | M1-53 DONE | OpenSSF Scorecard hardening: pinned malware-scan.yml actions to commit SHAs and semgrep to 1.136.0 (Pinned-Dependencies); enriched SECURITY.md with vulnerability reporting instructions and response/disclosure timelines. All 48 tests and schema validations pass. |
 | 2026-11-01 | `docs/drips-wave-application` | registry | no row changes | Added dedicated DRIPS_WAVE.md application and review summary document for the Drips Wave Stellar program review panel, detailing payee metadata schema architecture, on-chain match CI, testing hygiene, and maintainers. Added Maintainers table, Community & Discussions, and Contributors badge to README.md. |
 | 2026-11-01 | `docs/sync-canonical-dual-mode` | kinlock-registry | no row changes | Regenerated this repo's read-only doc copies with the canonical script (`.github/scripts/sync-docs.sh`, write mode) after canonical `.github`#43 landed ADR-0031 (universal dual-mode locks). |

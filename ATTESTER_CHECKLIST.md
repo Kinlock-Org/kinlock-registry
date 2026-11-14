@@ -25,3 +25,15 @@ For a comprehensive step-by-step walkthrough from account readiness to `meta_has
 ## Registry PR
 - [ ] File at `payees/<country>/<slug>.json`, public fields only.
 - [ ] `meta_hash` produced by `scripts/hash.ts`, then `register_payee` called with it.
+
+## Key rotation
+If an attester signing key is rotated or suspected of compromise, complete the following steps in order:
+- [ ] **1. Prepare and verify the new Stellar account:** Provision a new Stellar keypair and fund it with native XLM for transaction fees. Run `pnpm check-attester-readiness <new-attester-address>` to verify the account exists on-chain and holds sufficient XLM float.
+- [ ] **2. Rotate on-chain attester authorization:** Coordinate with the Kinlock multisig admin (`kinlock-contracts`) to invoke `add_attester(<new-attester-address>)` and `remove_attester(<old-attester-address>)`. Per ADR-0019, removing the old address immediately revokes its ability to register or modify payees while leaving existing open locks untouched.
+- [ ] **3. Update the registry record:** Update the `"address"` field in `attesters/<your-handle>.json` to `<new-attester-address>` (maintaining canonical sorted keys, 2-space indentation, and trailing newline).
+- [ ] **4. Run local and on-chain verification commands:**
+  ```bash
+  pnpm validate
+  pnpm check-onchain
+  ```
+- [ ] **5. Open the rotation pull request:** Submit a PR with the updated `attesters/<your-handle>.json` and a `ROADMAP.md` Changelog entry.
