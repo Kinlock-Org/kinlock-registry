@@ -9,6 +9,7 @@
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
     "validate": "tsx scripts/validate.ts",
+    "check-attester-countries": "tsx scripts/check-attester-countries.ts",
     "hash": "tsx scripts/hash.ts",
     "check-onchain": "tsx scripts/check-onchain.ts",
     "check-attester-readiness": "tsx scripts/check-attester-readiness.ts"
